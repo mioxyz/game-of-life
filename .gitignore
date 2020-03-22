@@ -1,0 +1,16 @@
+.vs
+.vscode
+GameOfLife/bin
+GameOfLife/obj
+TestBench/bin
+TestBench/obj
+TestResults
+*.cache
+*.dll
+*.pdb
+*.CopyComplete
+*.exe
+*.exe.config
+*.Extensions.xml
+*.Json.xml
+packages/**
