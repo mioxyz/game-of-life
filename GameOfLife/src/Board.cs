@@ -11,34 +11,23 @@ namespace GameOfLife
     {
         // mutables
         private bool[,,] raw;
-        public List<string> debug0 = new List<string>();
-        public List<string> debug1 = new List<string>();
 
         int buffer = 0; // buffer <- [0,1]
         private int dim_x;
         private int dim_y;
-        public readonly string name = "noname";
 
         public Board(int x, int y)
         {
             dim_x = x;
             dim_y = y;
-            raw = new bool[7, 7, 2];
+            raw = new bool[2 + x * 2, 2 + y * 2, 2];
         }
 
-        public Board(int x, int y, string data, string name)
-        {
-            this.name = name;
-            dim_x = x;
-            dim_y = y;
-            raw = new bool[7, 7, 2];
-            parseData(data);
-        }
         public Board(int x, int y, string data)
         {
             dim_x = x;
             dim_y = y;
-            raw = new bool[7, 7, 2];
+            raw = new bool[2 + x * 2, 2 + y *2, 2];
             parseData(data);
         }
 
@@ -47,20 +36,14 @@ namespace GameOfLife
             int x = 0;
             int y = 0;
 
-            foreach (char c in data)
-            {
-                switch (c)
-                {
-                    case '\n': x = 0; ++y; break;
-                    case '#': setCell(x++, y, true); break;
-                    default: setCell(x++, y, false); break;
-                }
+            foreach (char c in data) switch (c) {
+                case '\n': x = 0; ++y;             break;
+                case  '#': setCell(x++, y, true);  break;
+                default  : setCell(x++, y, false); break;
             }
-
+            
             if (x > dim_x) throw new System.ArgumentException("data in x-axis is out of pre-defined range");
             if (y > dim_y) throw new System.ArgumentException("data in y-axis is out of pre-defined range");
-
-            //swapBuffers();
         }
 
         public int getDim_x() => dim_x;
@@ -72,13 +55,6 @@ namespace GameOfLife
         //returns board cell value, normalized and all, as an integer.
         public int getCell(int x, int y)
         {
-            /*
-            if (raw[normalize(x, dim_x), normalize(y, dim_y), buffer])
-            {
-                string asd = normalize(x, dim_x).ToString() + ", " + normalize(y, dim_y).ToString() + ", " + buffer;
-                string asdlkj = asd;
-            }
-            */
             if (raw[normalize(x, dim_x), normalize(y, dim_y), buffer]) return 1;
             return 0;
         }
@@ -88,23 +64,7 @@ namespace GameOfLife
 
         public void setCell(int x, int y, bool state)
         {
-            int debugX = normalize(x, dim_x);
-            int debugY = normalize(y, dim_y);
-            int asdlkj = debugX + debugY;
             raw[normalize(x, dim_x), normalize(y, dim_y), (buffer == 0) ? 1 : 0] = state;
-
-            if (state)
-            {
-                if (buffer == 0)
-                {
-                    debug0.Add(x.ToString() + ", " + y.ToString());
-                }
-                else
-                {
-                    debug1.Add(x.ToString() + ", " + y.ToString());
-                }
-            }
-
         }
 
         public int swapBuffers()
@@ -116,8 +76,7 @@ namespace GameOfLife
         public void draw()
         {
             Console.Clear();
-            for (int y = 0; y < dim_y; ++y)
-            {
+            for (int y = 0; y < dim_y; ++y) {
                 string line = "";
                 for (int x = 0; x < dim_x; ++x) line += (raw[x, y, buffer]) ? "#" : " ";
                 Console.WriteLine(line);
@@ -136,8 +95,7 @@ namespace GameOfLife
         public string toString()
         {
             string ret = "";
-            for (int x = 0; x < dim_x; ++x)
-            {
+            for (int x = 0; x < dim_x; ++x) {
                 for (int y = 0; y < dim_y; ++y) ret += raw[x, y, buffer] ? "#" : " ";
                 ret += Environment.NewLine;
             }
@@ -155,22 +113,14 @@ namespace GameOfLife
 
         public static bool operator ==(Board v, Board w)
         {
-            if (v.getDim_x() != w.getDim_x()
-            || v.getDim_y() != w.getDim_y()) return false;
+            if (v.getDim_x() != w.getDim_x() || v.getDim_y() != w.getDim_y())
+                return false;
 
             for (int x = 0; x < v.getDim_x(); ++x)
                 for (int y = 0; y < v.getDim_y(); ++y)
-                {
-
-                    if (v.getCell(x, y) != w.getCell(x, y))
-                    {
-                        int XX = v.getCell(x, y);
-                        int YY = w.getCell(x, y);
-                        int ZZ = XX + YY;
-
+                    if (v.getCell(x, y) != w.getCell(x, y)) 
                         return false;
-                    }
-                }
+           
             return true;
         }
         public static bool operator !=(Board v, Board w) => !(v == w);

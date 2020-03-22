@@ -8,28 +8,19 @@ namespace GameOfLife
         static void Main(string[] args)
         {
 
-            //Console.WriteLine(System.IO.Directory.GetCurrentDirectory());
-            //Console.WriteLine(System.IO.Path.GetFullPath(System.IO.Path.Combine(AppContext.BaseDirectory, "..\\..\\..\\")));
-            //Console.ReadKey();
+            Console.Write("Game Of Dank Memes");
+            Console.ReadKey();
 
             int k = 0;
             bool run = true;
 
-            Engine engine = new Engine(5, 5,
-                System.IO.File.ReadAllText(
-                    WorkingDirectory.VisualStudioSolution + "\\data\\board\\blinker.board"
-                )
-            );
+            Engine engine = new Engine(17, 17, WorkingDirectory.ReadFile("data/board/pulsar.board"));
+            engine.getBoard().swapBuffers();
 
-            Console.Write("Game Of Dank Memes");
-            //engine.populateRandom();
-
-            while (run)
-            {
+            while (run) {
                 engine.loop();
 
-                if (k > 500)
-                {
+                if (k > 500) {
                     k = 0;
                     if (Console.ReadKey().Key == ConsoleKey.Y) run = false;
                 }
