@@ -26,6 +26,9 @@ namespace GameOfLife
     /// </summary>
     public class Board
     {
+        public string name;
+        public string _id;
+
         // mutables
         private bool[,,] raw;
 
@@ -33,6 +36,11 @@ namespace GameOfLife
         private int dim_x;
         private int dim_y;
 
+        public Board(string name, string _id)
+        {
+            this._id = _id;
+            this.name = name;
+        }
         public Board(int x, int y)
         {
             dim_x = x;

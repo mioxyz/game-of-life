@@ -19,7 +19,6 @@ using Newtonsoft.Json;
 
 namespace TestBench
 {
-
     class TestFrameJsonWrapper
     {
         public string[] seed;
@@ -29,7 +28,6 @@ namespace TestBench
         public int dim_x;
         public int dim_y;
     }
-
 
     /// <summary>
     ///  loads tests from disc in json format to our TestFrame objects. 

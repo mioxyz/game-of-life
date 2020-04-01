@@ -92,6 +92,16 @@ namespace GameOfLife
             board.draw();
             Thread.Sleep(deltaTick);
         }
+
+        public Board getMainBoard()
+        {
+            Database db = new Database();
+
+            CouchResponse<Board> response = db.get<Board>(new Board("main", "1"));
+
+            return response.docs[0];
+        }
+
     }
 
 }

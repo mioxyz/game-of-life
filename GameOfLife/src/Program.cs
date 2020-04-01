@@ -14,16 +14,28 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with "mio's Game Of Life".  If not, see<https://www.gnu.org/licenses/>
 */
-
 using System;
 
 namespace GameOfLife
 {
     class Program
     {
+
+        static void testGetDBRequest()
+        {
+            Console.WriteLine("Database test");
+            Database db = new Database();
+            Console.WriteLine(db.getDatabaseInfo());
+            TestDocument td = new TestDocument();
+            CouchResponse<TestDocument> crtd = db.get<TestDocument>(td);
+            foreach (TestDocument doc in crtd.docs) {
+                Console.WriteLine(doc.getName());
+            }
+        }
+
         static void Main(string[] args)
         {
-
+        
             Console.Write("Game Of Dank Memes");
             Console.ReadKey();
 

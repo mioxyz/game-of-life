@@ -17,6 +17,7 @@ along with "mio's Game Of Life".  If not, see<https://www.gnu.org/licenses/>
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using GameOfLife;
+using Moq;
 
 namespace TestBench
 {
@@ -66,6 +67,43 @@ namespace TestBench
 
         /// <summary> We test the Tub "still life" pattern.</summary>
         [TestMethod] public void Tub() => test("tub");
+    }
+
+    public class DatabaseEngineTests
+    {
+        private Mock<DatabaseInterface> buildMockDatabase()
+        {
+           
+            // build response based on the mockedDatabase call, get data locally
+            var response = new CouchResponse<Board>(); 
+            response.docs.Add(new Board(10, 10, WorkingDirectory.ReadFile("data/board/main.mock.board")));
+
+            // create a Mock instance of Database
+            var mockDatabase = new Mock<DatabaseInterface>();
+
+            // setup mock function "get" such that it always returns a board loaded with main.mock.board
+            mockDatabase.Setup( db => db.get(It.IsAny<Board>())).Returns(response);
+
+            // setup mock function get
+            mockDatabase.Setup(db => db.getDatabaseInfo()).Returns("mock database info");
+
+
+            return mockDatabase;
+        }
+
+
+        [TestMethod] public void Blinker() {
+
+            var mockDatabase = buildMockDatabase();
+
+            // normally we pass mocked object to another object, it makes little sense
+            // building a mock object and then testing the return value of the mock whatever.
+
+            Assert.IsTrue(mockDatabase.Object.getDatabaseInfo() == "mock database info");
+
+
+        }
 
     }
+
 }
