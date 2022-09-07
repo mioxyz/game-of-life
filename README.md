@@ -1,7 +1,7 @@
 # Game Of Life Unit Test Demo
 Is a minimal implementation of [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life), 
 a cellular automation algorithm for demonstrating how unit tests work in C#.
-This is an old project imported from (my gitlab account)[https://gitlab.com/mioxyz/game-of-life-2].
+This is an old project imported from [my gitlab account](https://gitlab.com/mioxyz/game-of-life-2).
 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
