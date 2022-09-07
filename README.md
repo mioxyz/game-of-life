@@ -1,7 +1,7 @@
-# mio's Game Of Life
+# Game Of Life Unit Test Demo
 Is a minimal implementation of [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life), 
-a cellular automation algorithm and a Unit Test project for testing if the cellular automation behaves in the intended way.
-The tests are designed to only test the Engine.step() function, all other parts of the application we assume work as intended.
+a cellular automation algorithm for demonstrating how unit tests work in C#.
+This is an old project imported from (my gitlab account)[https://gitlab.com/mioxyz/game-of-life-2].
 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
@@ -32,25 +32,6 @@ until finished
 
 End with an example of getting some data out of the system or using it for a little demo
 
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
 
 ## Deployment
 
@@ -61,22 +42,6 @@ Add additional notes about how to deploy this on a live system
 * [Newtonsoft.Json](https://www.newtonsoft.com/json) - Used for loading TestFrames
 * [Maven](https://maven.apache.org/) - Dependency Management
 * [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
